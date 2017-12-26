@@ -7,6 +7,7 @@ public class TriggerListActivity extends AppCompatActivity
 {
 
   private TriggerManager triggerManager;
+  private Trigger trigger = Trigger.triggers[0];
 
   @Override
   protected void onCreate(Bundle savedInstanceState)
@@ -14,10 +15,9 @@ public class TriggerListActivity extends AppCompatActivity
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_trigger_list);
 
+    // test create alarm
     triggerManager = new TriggerManager(this);
-    triggerManager.setTrigger();
-
-
+    triggerManager.setTrigger(trigger.id, trigger.days, trigger.times);
   }
 
 }

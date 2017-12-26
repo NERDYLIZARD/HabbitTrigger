@@ -11,11 +11,13 @@ import android.util.Log;
 
 public class TriggerService extends Service
 {
-  private static final String TAG = TriggerService.class.getCanonicalName();
+  private final String TAG = this.getClass().getSimpleName();
+
 
   public TriggerService()
   {
   }
+
 
   @Override
   public IBinder onBind(Intent intent)
@@ -23,6 +25,7 @@ public class TriggerService extends Service
     // TODO: Return the communication channel to the service.
     throw new UnsupportedOperationException("Not yet implemented");
   }
+
 
   @Override
   public int onStartCommand(Intent intent, int flags, int startId)
@@ -45,6 +48,7 @@ public class TriggerService extends Service
 
     return super.onStartCommand(intent, flags, startId);
   }
+
 
   @Override
   public void onCreate()
