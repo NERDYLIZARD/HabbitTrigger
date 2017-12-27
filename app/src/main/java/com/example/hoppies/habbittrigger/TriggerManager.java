@@ -46,18 +46,27 @@ public class TriggerManager
         // fetch new Intent of OnTriggerReceiver
         Intent intent = new Intent(context, OnTriggerReceiver.class);
 
-        // set PendingIntend with different request code
+        // set PendingIntend with different requestCode
         // requestCode format:
-        // id.day.hour.minute
-        // 1.1.14.30
-        // id: 1, day: SUN, time: 14:30
+          // id.day.hour.minute
+          // 123.1.14.30
+          // id: 123, day: SUN, time: 14:30
 
-        // NOTE: An issue could occur if user ever enters over 2,147,483,647 tasks. (Max int value).
+        // NOTE: Max int = 2,147,483,647. (RequestCode must be integer)
+        // An issue occurs once _id of Trigger is larger than 4 digits e.g > 9999.
+          // Our string requestCode is constraint by 10 digits of 2,147,483,647.
+          // The requestCode can only be at most 9 digits to ensure that once it's converted to integer, it won't exceed the range
+          // The requestCode mandatory contains 5 digits of combination of day.hour.minute. e.g 1.14.30
+          // Therefore, the _id that is appended in front of day.hour.minute must be at most 4 digits.
+          // Solution: modulus _id by 9999 to obtain 4-digit long _id.
+
+        // Bug: if _id % 9999 results the existing Trigger's _id.
+          // e.g. the (_id = 1) == (_id = 10000) due 10000 % 9999 = 1
+          // but it's not likely that the first Trigger is still on the system once the 10000th Trigger is created.
         // I highly doubt this will ever happen. But is good to note.
 
         StringBuilder stringBuilder = new StringBuilder();
-        // TODO: Try modulo id
-        stringBuilder.append(String.valueOf(id))
+        stringBuilder.append(String.valueOf(id % 9999))
                 .append(String.valueOf(day))
                 .append(hour)
                 .append(minute);
