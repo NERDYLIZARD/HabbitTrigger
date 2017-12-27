@@ -1,36 +1,34 @@
 package com.example.hoppies.habbittrigger;
 
+import android.app.IntentService;
 import android.app.Notification;
 import android.app.NotificationManager;
-import android.app.Service;
 import android.content.Intent;
 import android.media.RingtoneManager;
 import android.net.Uri;
-import android.os.IBinder;
+import android.support.annotation.Nullable;
 import android.util.Log;
 
-public class TriggerService extends Service
+public class TriggerService extends IntentService
 {
   private final String TAG = this.getClass().getSimpleName();
 
 
   public TriggerService()
   {
+    super("TriggerService");
+  }
+
+
+  public TriggerService(String name)
+  {
+    super(name);
   }
 
 
   @Override
-  public IBinder onBind(Intent intent)
+  protected void onHandleIntent(@Nullable Intent intent)
   {
-    // TODO: Return the communication channel to the service.
-    throw new UnsupportedOperationException("Not yet implemented");
-  }
-
-
-  @Override
-  public int onStartCommand(Intent intent, int flags, int startId)
-  {
-
     Log.i(TAG, "start");
 
     Uri sound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
@@ -41,21 +39,14 @@ public class TriggerService extends Service
             .setContentTitle("Test Title")
             .setContentText("Test Description")
             .setSmallIcon(R.drawable.ic_launcher_background)
-//            .setSound(sound)
+            .setAutoCancel(true)
+            .setSound(sound)
             .build();
 
-    notificationMng.notify(startId, notification);
+    notificationMng.notify(0, notification);
 
-    return super.onStartCommand(intent, flags, startId);
   }
 
-
-  @Override
-  public void onCreate()
-  {
-    super.onCreate();
-    Log.i(TAG, "create");
-  }
 
 }
 

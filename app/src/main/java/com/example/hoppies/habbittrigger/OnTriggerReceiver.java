@@ -6,20 +6,21 @@ import android.content.Intent;
 import android.util.Log;
 
 /**
- * Created by Hoppies on 24-Dec-17.
+ * Created on 24-Dec-17.
  */
 
 public class OnTriggerReceiver extends BroadcastReceiver
 {
-  private static final String TAG = OnTriggerReceiver.class.getCanonicalName();
+  private final String TAG = this.getClass().getSimpleName();
+
 
   @Override
   public void onReceive(Context context, Intent intent)
   {
     Log.i(TAG, "onReceive");
 
-    Intent serviceIntent = new Intent(context, TriggerService.class);
-    context.startService(serviceIntent);
+    Intent triggerService = new Intent(context, TriggerService.class);
+    context.startService(triggerService);
   }
 
 }
