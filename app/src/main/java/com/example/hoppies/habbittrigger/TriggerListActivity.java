@@ -18,8 +18,8 @@ public class TriggerListActivity extends AppCompatActivity
 
     // test create alarm
     triggerManager = new TriggerManager(this);
-    triggerManager.setSpecifiedTimeTrigger(specifiedTimeTrigger.id, specifiedTimeTrigger.days, specifiedTimeTrigger.times);
-    triggerManager.setIntervalTrigger(intervalTrigger.id, intervalTrigger.days, intervalTrigger.beginningTime, intervalTrigger.endingTime, intervalTrigger.interval);
+//    triggerManager.setSpecifiedTimeTrigger(specifiedTimeTrigger.id, specifiedTimeTrigger.days, specifiedTimeTrigger.times);
+//    triggerManager.setIntervalTrigger(intervalTrigger.id, intervalTrigger.days, intervalTrigger.beginningTime, intervalTrigger.endingTime, intervalTrigger.interval);
   }
 
 }
