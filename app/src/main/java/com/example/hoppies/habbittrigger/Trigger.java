@@ -43,11 +43,11 @@ public class Trigger
 
 
   public static final Trigger[] triggers = {
-          new Trigger(1, "Test Title",
+          new Trigger(0, "Test Title",
                   "Test Description",
                   new int[]{1, 3},
                   new String[]{"08:00", "09:00"}),
-          new Trigger(2, "Test Title 2",
+          new Trigger(1, "Test Title 2",
                   "Test Description 2",
                   new int[]{1, 2, 3, 7},
                   "09:30", "14:00", "00:20"),
