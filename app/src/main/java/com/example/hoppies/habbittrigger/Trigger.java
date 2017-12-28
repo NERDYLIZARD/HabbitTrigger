@@ -9,17 +9,36 @@ public class Trigger
   public long id;
   public String title;
   public String description;
+  public int mode;
   public int[] days;
   public String[] times;
+  public String beginningTime;
+  public String endingTime;
+  public String interval;
 
 
-  private Trigger(long id, String title, String description, int[] days, String[] times)
+  private Trigger(long id, String title, String description, int[] days)
   {
     this.id = id;
     this.title = title;
     this.description = description;
     this.days = days;
+  }
+
+
+  private Trigger(long id, String title, String description, int[] days, String[] times)
+  {
+    this(id, title, description, days);
     this.times = times;
+  }
+
+
+  private Trigger(long id, String title, String description, int[] days, String beginningTime, String endingTime, String interval)
+  {
+    this(id, title, description, days);
+    this.beginningTime = beginningTime;
+    this.endingTime = endingTime;
+    this.interval = interval;
   }
 
 
@@ -31,7 +50,7 @@ public class Trigger
           new Trigger(2, "Test Title 2",
                   "Test Description 2",
                   new int[]{1, 2, 3, 7},
-                  new String[]{"09:30", "11:00"}),
+                  "09:30", "14:00", "00:20"),
   };
 
 }

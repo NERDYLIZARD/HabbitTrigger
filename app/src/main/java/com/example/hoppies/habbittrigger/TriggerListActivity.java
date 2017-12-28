@@ -7,7 +7,8 @@ public class TriggerListActivity extends AppCompatActivity
 {
 
   private TriggerManager triggerManager;
-  private Trigger trigger = Trigger.triggers[0];
+  private Trigger specifiedTimeTrigger = Trigger.triggers[0];
+  private Trigger intervalTrigger = Trigger.triggers[1];
 
   @Override
   protected void onCreate(Bundle savedInstanceState)
@@ -17,7 +18,8 @@ public class TriggerListActivity extends AppCompatActivity
 
     // test create alarm
     triggerManager = new TriggerManager(this);
-    triggerManager.setTrigger(trigger.id, trigger.days, trigger.times);
+    triggerManager.setSpecifiedTimeTrigger(specifiedTimeTrigger.id, specifiedTimeTrigger.days, specifiedTimeTrigger.times);
+    triggerManager.setIntervalTrigger(intervalTrigger.id, intervalTrigger.days, intervalTrigger.beginningTime, intervalTrigger.endingTime, intervalTrigger.interval);
   }
 
 }
