@@ -41,6 +41,7 @@ public class TriggerDetailFragment extends Fragment
         // open text input dialog
         TextInputDialogFragment textInputDialogFragment = TextInputDialogFragment.newInstance(
                 String.valueOf(triggerTitle.getText()),
+                R.string.trigger,
                 R.string.hint_trigger_title);
         textInputDialogFragment.show(TriggerDetailFragment.this.getChildFragmentManager(), "text_input_dialog");
       }

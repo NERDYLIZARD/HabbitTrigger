@@ -17,9 +17,9 @@ import android.widget.EditText;
  */
 public class TextInputDialogFragment extends DialogFragment
 {
-
   public static final String TEXT_INPUT = "textInput";
-  public static final String HINT_RES_ID = "hintResId";
+  public static final String TITLE = "title";
+  public static final String HINT = "hint";
   private TextInputDialogListener listener;
 
   interface TextInputDialogListener
@@ -40,15 +40,17 @@ public class TextInputDialogFragment extends DialogFragment
    * Static factory - Instantiate an object and initialize its member variables.
    *
    * @param textInput Populated text input
-   * @param hintResId Hint/placeholder
+   * @param title Title of dialog
+   * @param hint Hint/placeholder
    * @return An instance of TextInputDialogFragment
    */
   @NonNull
-  public static TextInputDialogFragment newInstance(String textInput, int hintResId)
+  public static TextInputDialogFragment newInstance(String textInput, int title, int hint)
   {
     Bundle args = new Bundle();
     args.putString(TEXT_INPUT, textInput);
-    args.putInt(HINT_RES_ID, hintResId);
+    args.putInt(TITLE, title);
+    args.putInt(HINT, hint);
 
     TextInputDialogFragment fragment = new TextInputDialogFragment();
     fragment.setArguments(args);
@@ -83,20 +85,20 @@ public class TextInputDialogFragment extends DialogFragment
     LayoutInflater inflater = getActivity().getLayoutInflater();
     View view = inflater.inflate(R.layout.dialog_text_input, null);
 
-    final EditText triggerTitle = view.findViewById(R.id.trigger_title_edit);
-    triggerTitle.setText(getArguments().getString(TEXT_INPUT));
-    triggerTitle.setHint(getArguments().getInt(HINT_RES_ID));
-    triggerTitle.setSelection(triggerTitle.length());
+    final EditText editText = view.findViewById(R.id.edit_text);
+    editText.setText(getArguments().getString(TEXT_INPUT));
+    editText.setHint(getArguments().getInt(HINT));
+    editText.setSelection(editText.length());
 
     AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
     builder.setView(view)
-            .setTitle(R.string.trigger)
+            .setTitle(getArguments().getInt(TITLE))
             .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener()
             {
               @Override
               public void onClick(DialogInterface dialogInterface, int i)
               {
-                listener.onTextInputDialogOk(String.valueOf(triggerTitle.getText()));
+                listener.onTextInputDialogOk(String.valueOf(editText.getText()));
               }
             })
             .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener()
