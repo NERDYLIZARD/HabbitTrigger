@@ -14,6 +14,7 @@ import android.widget.TextView;
  * Trigger's detail fragment
  */
 public class TriggerDetailFragment extends Fragment
+        implements TextInputDialogFragment.TextInputDialogListener
 {
   private long triggerId;
 
@@ -25,11 +26,27 @@ public class TriggerDetailFragment extends Fragment
 
 
   @Override
-  public View onCreateView(@NonNull LayoutInflater  inflater, ViewGroup container,
+  public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                            Bundle savedInstanceState)
   {
     // Inflate the layout for this fragment
-    return inflater.inflate(R.layout.fragment_trigger_detail, container, false);
+    View view = inflater.inflate(R.layout.fragment_trigger_detail, container, false);
+
+    final TextView triggerTitle = view.findViewById(R.id.trigger_title);
+    triggerTitle.setOnClickListener(new View.OnClickListener()
+    {
+      @Override
+      public void onClick(View view)
+      {
+        // open text input dialog
+        TextInputDialogFragment textInputDialogFragment = TextInputDialogFragment.newInstance(
+                String.valueOf(triggerTitle.getText()),
+                R.string.hint_trigger_title);
+        textInputDialogFragment.show(TriggerDetailFragment.this.getChildFragmentManager(), "text_input_dialog");
+      }
+    });
+
+    return view;
   }
 
 
@@ -56,5 +73,19 @@ public class TriggerDetailFragment extends Fragment
   public void setTriggerId(long id)
   {
     triggerId = id;
+  }
+
+
+  @Override
+  public void onTextInputDialogOk(String title)
+  {
+    TextView triggerTitle = getView().findViewById(R.id.trigger_title);
+    triggerTitle.setText(title);
+  }
+
+
+  @Override
+  public void onTextInputDialogCancel()
+  {
   }
 }

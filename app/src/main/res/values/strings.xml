@@ -1,3 +1,18 @@
 <resources>
   <string name="app_name">Habbit Trigger</string>
+
+  <string name="trigger">Trigger</string>
+
+  <!--form-->
+  <!--<string name="title">Title</string>-->
+  <string name="repeat">Repeat</string>
+
+  <!--buttons-->
+  <string name="ok">OK</string>
+  <string name="cancel">Cancel</string>
+  <string name="set">Set</string>
+
+  <!--hints-->
+  <string name="hint_trigger_title">Get off the desk</string>
+
 </resources>

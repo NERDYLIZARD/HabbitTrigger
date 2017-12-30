@@ -10,7 +10,8 @@
     android:roundIcon="@mipmap/ic_launcher_round"
     android:supportsRtl="true"
     android:theme="@style/AppTheme">
-    <activity android:name=".TriggerListActivity">
+    <!--<activity android:name=".TriggerListActivity">-->
+    <activity android:name=".TriggerDetailActivity">
       <intent-filter>
         <action android:name="android.intent.action.MAIN" />
 
@@ -22,9 +23,10 @@
 
     <service android:name=".TriggerService" />
 
-    <activity
-      android:name=".TriggerDetailActivity"
-      android:parentActivityName=".TriggerListActivity"></activity>
+    <!--<activity-->
+      <!--android:name=".TriggerDetailActivity"-->
+      <!--android:parentActivityName=".TriggerListActivity"></activity>-->
+
   </application>
 
 </manifest>

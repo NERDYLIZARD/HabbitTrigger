@@ -4,10 +4,35 @@
   android:layout_height="match_parent"
   tools:context="com.example.hoppies.habbittrigger.TriggerDetailFragment">
 
-  <TextView
-    android:id="@+id/trigger_title"
+  <ScrollView
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:text="" />
+    android:layout_height="match_parent">
+
+    <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:orientation="vertical"
+      android:padding="15dp">
+
+      <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:labelFor="@+id/trigger_title"
+        android:text="@string/trigger"
+        android:textStyle="bold" />
+
+      <TextView
+        android:id="@+id/trigger_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="20"
+        android:text="" />
+
+    </LinearLayout>
+
+  </ScrollView>
+
 
 </FrameLayout>

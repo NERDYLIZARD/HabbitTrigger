@@ -43,7 +43,7 @@ public class Trigger
 
 
   public static final Trigger[] triggers = {
-          new Trigger(0, "Test Title",
+          new Trigger(0, "Vivamus suscipit tortor eget felis porttitor volutpat. Lacinia eget consectetur sed, convallis at tellus.",
                   "Test Description",
                   new int[]{1, 3},
                   new String[]{"08:00", "09:00"}),

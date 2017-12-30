@@ -15,7 +15,10 @@ public class TriggerDetailActivity extends AppCompatActivity
     setContentView(R.layout.activity_trigger_detail);
 
     TriggerDetailFragment triggerDetailFragment = (TriggerDetailFragment) getSupportFragmentManager().findFragmentById(R.id.fragment_trigger_detail);
-    long triggerId = (long) getIntent().getExtras().get(EXTRA_TRIGGER_ID);
+//    long triggerId = (long) getIntent().getExtras().get(EXTRA_TRIGGER_ID);
+
+    // test TriggerDetailFragment
+    long triggerId = 0;
     triggerDetailFragment.setTriggerId(triggerId);
   }
 }

@@ -45,7 +45,7 @@ public class TriggerManager
     int beginningTimeInSecs = getTimeInSecs(beginningTime);
     int endingTimeInSecs = getTimeInSecs(endingTime);
     int intervalInSecs = getTimeInSecs(interval);
-    int segments = ((endingTimeInSecs - beginningTimeInSecs) / intervalInSecs) + 1;
+    int segments = (Math.abs(endingTimeInSecs - beginningTimeInSecs) / intervalInSecs) + 1;
 
     // obtain time of each segment
     String[] times = new String[segments];
