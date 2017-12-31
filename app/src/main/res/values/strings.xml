@@ -15,4 +15,13 @@
   <!--hints-->
   <string name="hint_trigger_title">Get off the desk</string>
 
+  <!--days-->
+  <string name="monday">Monday</string>
+  <string name="tuesday">Tuesday</string>
+  <string name="wednesday">Wednesday</string>
+  <string name="thursday">Thursday</string>
+  <string name="friday">Friday</string>
+  <string name="saturday">Saturday</string>
+  <string name="sunday">Sunday</string>
+
 </resources>
