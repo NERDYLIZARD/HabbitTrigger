@@ -62,10 +62,10 @@ public class TriggerDetailFragment extends Fragment
 
 
     /*repeating days*/
-    List<String> stringDays = new ArrayList<>(Arrays.asList(trigger.days));
-    final boolean[] days = getBooleanDays(stringDays);
+    List<String> days = new ArrayList<>(Arrays.asList(trigger.days));
+    final boolean[] booleanDays = getBooleanDays(days);
     TextView repeatingDays = view.findViewById(R.id.repeatingDays);
-    repeatingDays.setText(getDaysRenderingFormat(stringDays));
+    repeatingDays.setText(getDaysRenderingFormat(booleanDays));
 
     final LinearLayout repeatingDaysWrapper = view.findViewById(R.id.repeatingDaysWrapper);
     repeatingDaysWrapper.setOnClickListener(new View.OnClickListener()
@@ -74,7 +74,7 @@ public class TriggerDetailFragment extends Fragment
       public void onClick(View view)
       {
         // open checkbox dialog
-        DaySelectionDialogFragment daySelectionDialogFragment = DaySelectionDialogFragment.newInstance(days);
+        DaySelectionDialogFragment daySelectionDialogFragment = DaySelectionDialogFragment.newInstance(booleanDays);
         daySelectionDialogFragment.show(TriggerDetailFragment.this.getChildFragmentManager(), "day_selection_dialog");
       }
     });
@@ -158,19 +158,56 @@ public class TriggerDetailFragment extends Fragment
   }
 
 
-  // TODO: change parameter to boolean, easy to format as Everyday, weekday, weekend
-  private String getDaysRenderingFormat(List<String> days)
+  /**
+   * Create rendering format of days by concatenating abbreviation of days
+   * <p>
+   * Format: MON TUE ... SUN / EVERY DAY
+   *
+   * @param booleanDays Booleans' array represents days
+   * @return Concatenation of Abbreviation of days
+   */
+  private String getDaysRenderingFormat(boolean[] booleanDays)
   {
+    if (booleanDays[0] && booleanDays[1] && booleanDays[2] && booleanDays[3]
+            && booleanDays[4] && booleanDays[5] && booleanDays[6])
+      return "EVERY DAY";
+
     StringBuilder daysRenderingFormat = new StringBuilder();
-    for (String day : days)
-      daysRenderingFormat.append(getDayAbbreviation(day)).append("  ");
+    for (int i = 0; i < 7; ++i) {
+      if (booleanDays[i])
+        daysRenderingFormat.append(getDayAbbreviation(i)).append(" ");
+    }
     return daysRenderingFormat.toString();
   }
 
 
-  private String getDayAbbreviation(String day)
+  /**
+   * Obtain abbreviation of day.
+   * <p>
+   * 0 - MON, 1 - TUE, ... , 6 - SUN
+   *
+   * @param day Integer represents day
+   * @return Abbreviation of day.
+   */
+  private String getDayAbbreviation(int day)
   {
-    return day.substring(0, 3).toUpperCase();
+    switch (day) {
+      case 0:
+        return "MON";
+      case 1:
+        return "TUE";
+      case 2:
+        return "WED";
+      case 3:
+        return "THU";
+      case 4:
+        return "FRI";
+      case 5:
+        return "SAT";
+      case 6:
+        return "SUN";
+    }
+    return "";
   }
 
 
@@ -195,8 +232,7 @@ public class TriggerDetailFragment extends Fragment
   {
     if (getView() != null) {
       TextView repeatingDays = getView().findViewById(R.id.repeatingDays);
-      ArrayList<String> days = getStringDays(booleanDays);
-      repeatingDays.setText(getDaysRenderingFormat(days));
+      repeatingDays.setText(getDaysRenderingFormat(booleanDays));
     }
   }
 
