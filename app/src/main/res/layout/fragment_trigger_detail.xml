@@ -14,6 +14,12 @@
       android:orientation="vertical">
 
 
+      <fragment
+        android:id="@+id/time"
+        android:name="com.example.hoppies.habbittrigger.TriggerTimeFragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
       <LinearLayout
         android:id="@+id/triggerTitleWrapper"
         android:layout_width="match_parent"
@@ -62,6 +68,7 @@
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:text="" />
+
       </LinearLayout>
 
     </LinearLayout>

@@ -1,0 +1,30 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_width="wrap_content"
+  android:layout_height="wrap_content"
+  tools:context="com.example.hoppies.habbittrigger.TriggerTimeFragment">
+
+
+  <LinearLayout
+    android:id="@+id/timeWrapper"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="4dp">
+
+    <TextView
+      android:id="@+id/timeView"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="08:00" />
+
+    <TextView
+      android:id="@+id/timeSuffix"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="" />
+
+
+  </LinearLayout>
+
+</FrameLayout>
