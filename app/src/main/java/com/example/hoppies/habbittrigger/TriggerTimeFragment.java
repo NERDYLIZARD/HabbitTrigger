@@ -2,10 +2,8 @@ package com.example.hoppies.habbittrigger;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.text.format.DateFormat;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,13 +18,25 @@ public class TriggerTimeFragment extends Fragment
         implements TimePickerDialogFragment.TimePickerDialogListener
 {
 
-  // TODO: having state as int hour and int minute instead of String time
-  // test value time
-  private String time = "14:30";
+  public static final String HOUR = "hour";
+  public static final String MINUTE = "minute";
 
 
   public TriggerTimeFragment()
   {
+  }
+
+
+  @NonNull
+  public static TriggerTimeFragment newInstance(int hour, int minute)
+  {
+    Bundle args = new Bundle();
+    args.putInt(HOUR, hour);
+    args.putInt(MINUTE, minute);
+
+    TriggerTimeFragment fragment = new TriggerTimeFragment();
+    fragment.setArguments(args);
+    return fragment;
   }
 
 
@@ -38,9 +48,8 @@ public class TriggerTimeFragment extends Fragment
     View view = inflater.inflate(R.layout.fragment_trigger_time, container, false);
 
     LinearLayout timeWrapper = view.findViewById(R.id.timeWrapper);
-    // TODO: accept argument as int hour and int minute
-    int hour = Integer.parseInt(time.split(":")[0]);
-    int minute = Integer.parseInt(time.split(":")[1]);
+    int hour = getArguments().getInt(HOUR);
+    int minute = getArguments().getInt(MINUTE);
     renderTimeView(view, hour, minute);
 
     timeWrapper.setOnClickListener(new View.OnClickListener()
@@ -48,8 +57,8 @@ public class TriggerTimeFragment extends Fragment
       @Override
       public void onClick(View view)
       {
-        int hour = Integer.parseInt(time.split(":")[0]);
-        int minute = Integer.parseInt(time.split(":")[1]);
+        int hour = getArguments().getInt(HOUR);
+        int minute = getArguments().getInt(MINUTE);
         TimePickerDialogFragment timePickerDialogFragment = TimePickerDialogFragment.newInstance(hour, minute);
         timePickerDialogFragment.show(getChildFragmentManager(), "time_picker_dialog");
       }
@@ -65,7 +74,8 @@ public class TriggerTimeFragment extends Fragment
     View view = getView();
     renderTimeView(view, hour, minute);
 
-    time = getTimeString(hour, minute);
+    getArguments().putInt(HOUR, hour);
+    getArguments().putInt(MINUTE, minute);
     // return String time to DetailFragment/TabHost
   }
 

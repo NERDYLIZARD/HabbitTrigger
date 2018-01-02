@@ -1,79 +1,73 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
   xmlns:tools="http://schemas.android.com/tools"
   android:layout_width="match_parent"
   android:layout_height="match_parent"
   tools:context="com.example.hoppies.habbittrigger.TriggerDetailFragment">
 
-  <ScrollView
+  <LinearLayout
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
 
     <LinearLayout
+      android:id="@+id/triggerTitleWrapper"
       android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:orientation="vertical">
+      android:layout_height="match_parent"
+      android:orientation="vertical"
+      android:padding="8dp">
 
-
-      <fragment
-        android:id="@+id/time"
-        android:name="com.example.hoppies.habbittrigger.TriggerTimeFragment"
+      <TextView
+        android:id="@+id/triggerTitleLabel"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:labelFor="@+id/trigger_title"
+        android:text="@string/trigger"
+        android:textStyle="bold" />
 
-      <LinearLayout
-        android:id="@+id/triggerTitleWrapper"
+      <TextView
+        android:id="@+id/triggerTitle"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:padding="8dp">
-
-        <TextView
-          android:id="@+id/triggerTitleLabel"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:layout_marginBottom="5dp"
-          android:labelFor="@+id/trigger_title"
-          android:text="@string/trigger"
-          android:textStyle="bold" />
-
-        <TextView
-          android:id="@+id/triggerTitle"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:layout_marginBottom="0dp"
-          android:ems="20"
-          android:text="" />
-
-      </LinearLayout>
-
-      <LinearLayout
-        android:id="@+id/repeatingDaysWrapper"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_margin="8dp"
-        android:orientation="vertical"
-        android:padding="0dp">
-
-        <TextView
-          android:id="@+id/repeatingDaysLabel"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:layout_marginBottom="5dp"
-          android:labelFor="@+id/repeatingDays"
-          android:text="@string/repeat"
-          android:textStyle="bold" />
-
-        <TextView
-          android:id="@+id/repeatingDays"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:text="" />
-
-      </LinearLayout>
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="0dp"
+        android:ems="20"
+        android:text="" />
 
     </LinearLayout>
 
-  </ScrollView>
+    <LinearLayout
+      android:id="@+id/repeatingDaysWrapper"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:layout_margin="8dp"
+      android:orientation="vertical"
+      android:padding="0dp">
+
+      <TextView
+        android:id="@+id/repeatingDaysLabel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:labelFor="@+id/repeatingDays"
+        android:text="@string/repeat"
+        android:textStyle="bold" />
+
+      <TextView
+        android:id="@+id/repeatingDays"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="" />
+
+    </LinearLayout>
 
 
-</FrameLayout>
+    <fragment
+      android:id="@+id/fragment"
+      android:name="com.example.hoppies.habbittrigger.SpecifiedTimeTriggerFragment"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content" />
+
+
+  </LinearLayout>
+
+</ScrollView>
