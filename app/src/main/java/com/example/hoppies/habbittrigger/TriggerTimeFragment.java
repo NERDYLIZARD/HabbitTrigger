@@ -5,6 +5,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.text.format.DateFormat;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,7 +23,6 @@ public class TriggerTimeFragment extends Fragment
   // TODO: having state as int hour and int minute instead of String time
   // test value time
   private String time = "14:30";
-  private boolean is24HourTimeFormat;
 
 
   public TriggerTimeFragment()
@@ -56,14 +56,6 @@ public class TriggerTimeFragment extends Fragment
     });
 
     return view;
-  }
-
-
-  @Override
-  public void onActivityCreated(@Nullable Bundle savedInstanceState)
-  {
-    super.onActivityCreated(savedInstanceState);
-    is24HourTimeFormat = DateFormat.is24HourFormat(getActivity());
   }
 
 
@@ -111,6 +103,8 @@ public class TriggerTimeFragment extends Fragment
    */
   private void renderTimeView(View view, int hour, int minute)
   {
+    boolean is24HourTimeFormat = DateFormat.is24HourFormat(getActivity());
+
     if (!is24HourTimeFormat) {
       TextView timeSuffix = view.findViewById(R.id.timeSuffix);
       timeSuffix.setText((hour < 12) ? " AM" : " PM");
