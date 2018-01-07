@@ -1,5 +1,6 @@
 package com.example.hoppies.habbittrigger;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
@@ -14,27 +15,36 @@ import android.widget.TextView;
 /**
  * A fragment display time view as per system time format i.e 12-hour/24-hour format.
  */
-public class TriggerTimeFragment extends Fragment
+public class TimeViewFragment extends Fragment
         implements TimePickerDialogFragment.TimePickerDialogListener
 {
 
+  public static final String TAG = "tag";
   public static final String HOUR = "hour";
   public static final String MINUTE = "minute";
+  private TimeViewListener listener;
 
 
-  public TriggerTimeFragment()
+  public TimeViewFragment()
   {
   }
 
 
+  interface TimeViewListener
+  {
+    void onTimeChange(String tag, int hour, int minute);
+  }
+
+
   @NonNull
-  public static TriggerTimeFragment newInstance(int hour, int minute)
+  public static TimeViewFragment newInstance(String tag, int hour, int minute)
   {
     Bundle args = new Bundle();
+    args.putString(TAG, tag);
     args.putInt(HOUR, hour);
     args.putInt(MINUTE, minute);
 
-    TriggerTimeFragment fragment = new TriggerTimeFragment();
+    TimeViewFragment fragment = new TimeViewFragment();
     fragment.setArguments(args);
     return fragment;
   }
@@ -69,14 +79,38 @@ public class TriggerTimeFragment extends Fragment
 
 
   @Override
+  public void onAttach(Context context)
+  {
+    super.onAttach(context);
+    try {
+      // if parent is a Fragment
+      if (getParentFragment() != null)
+        listener = (TimeViewListener) getParentFragment();
+        // if parent is Context
+      else
+        listener = (TimeViewListener) context;
+      // if sibling
+      //
+    } catch (ClassCastException e) {
+      throw new ClassCastException(context.toString()
+              + " must implement TimeViewListener");
+    }
+  }
+
+
+  @Override
   public void onTimeSet(int hour, int minute)
   {
     View view = getView();
     renderTimeView(view, hour, minute);
 
-    getArguments().putInt(HOUR, hour);
-    getArguments().putInt(MINUTE, minute);
-    // return String time to DetailFragment/TabHost
+    // update time and callback only if time if modified
+    if (hour != getArguments().getInt(HOUR)
+            || minute != getArguments().getInt(MINUTE)) {
+      getArguments().putInt(HOUR, hour);
+      getArguments().putInt(MINUTE, minute);
+      listener.onTimeChange(getArguments().getString(TAG), hour, minute);
+    }
   }
 
 

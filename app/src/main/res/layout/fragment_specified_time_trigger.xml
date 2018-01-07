@@ -2,11 +2,12 @@
   xmlns:tools="http://schemas.android.com/tools"
   android:layout_width="match_parent"
   android:layout_height="match_parent"
+  android:id="@+id/specifiedTime"
   tools:context="com.example.hoppies.habbittrigger.SpecifiedTimeTriggerFragment">
 
 
   <LinearLayout
-    android:id="@+id/specifiedTimeWrapper"
+    android:id="@+id/timeViewList"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"></LinearLayout>
